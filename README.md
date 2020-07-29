@@ -12,8 +12,10 @@ Below you will find some information about project structure
 Project should look like this:
 
 ```
-email-send-nodemailer-react/
-  api/  
+node-react-crud/
+  api/ 
+    models/
+    controllers/
   build/
   public/
   routes/
@@ -29,6 +31,7 @@ email-send-nodemailer-react/
      App.js
      index.js
    index.js
+  validators/ 
   README.md
   package.json
   webpack.base.js

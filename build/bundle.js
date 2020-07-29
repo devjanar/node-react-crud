@@ -86,25 +86,25 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./api/Todo.js":
-/*!*********************!*\
-  !*** ./api/Todo.js ***!
-  \*********************/
+/***/ "./api/controllers/TodoController.js":
+/*!*******************************************!*\
+  !*** ./api/controllers/TodoController.js ***!
+  \*******************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var mongoose = __webpack_require__(/*! mongoose */ \"mongoose\");\nvar Schema = mongoose.Schema;\n\nvar Todo = new Schema({\n\n    name: {\n        type: String,\n        trim: true\n    },\n    description: {\n        type: String,\n        trim: true\n    }\n\n}, { timestamps: true, versionKey: false });\n\nmodule.exports = mongoose.model('Todo', Todo);\n\n//# sourceURL=webpack:///./api/Todo.js?");
+eval("function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step(\"next\", value); }, function (err) { step(\"throw\", err); }); } } return step(\"next\"); }); }; }\n\nvar Model = __webpack_require__(/*! ../models/Todo */ \"./api/models/Todo.js\");\n\nmodule.exports = {\n\n    create: function (req, res, next) {\n        if (req.body && req.body != null) {\n            Model.create(req.body, function (err, success) {\n                if (!err) {\n                    res.status(200).json(success);\n                } else {\n                    res.status(400).json({ error: 'SomeThing Going On Wrong' });\n                }\n            });\n        } else {\n            res.status(400).json({ error: 'All fields required' });\n        }\n    },\n\n    findOne: function (req, res, next) {\n        if (req.body && req.body.id) {\n            Model.findById({ _id: req.body.id }, function (err, success) {\n                if (!err) {\n                    res.status(200).json(success);\n                } else {\n                    res.status(400).json({ error: 'SomeThing Going On Wrong' });\n                }\n            });\n        } else {\n            res.status(400).json({ error: 'SomeThing Going On Wrong' });\n        }\n    },\n\n    update: function (req, res, next) {\n        if (req.body && req.body._id) {\n            Model.findOneAndUpdate({ _id: req.body._id }, req.body, { new: true }, function (err, success) {\n                if (!err) {\n                    res.status(200).json(success);\n                } else {\n                    res.status(400).json({ error: 'SomeThing Going On Wrong' });\n                }\n            });\n        } else {\n            res.status(400).json({ error: 'SomeThing Going On Wrong' });\n        }\n    },\n\n    remove: (() => {\n        var _ref = _asyncToGenerator(function* (req, res, next) {\n            try {\n                if (req.body && req.body.id) {\n                    yield Model.findByIdAndRemove({ _id: req.body.id });\n                    let success = yield Model.find({}).sort([['createdAt', -1]]);\n                    //\n                    res.status(200).json(success);\n                } else {\n                    return res.status(400).json({ error: 'SomeThing Going On Wrong' });\n                }\n            } catch (e) {\n                return res.status(400).json({ error: 'Server Error' });\n            }\n        });\n\n        return function remove(_x, _x2, _x3) {\n            return _ref.apply(this, arguments);\n        };\n    })(),\n\n    getall: function (req, res, next) {\n        Model.find({}).sort([['createdAt', -1]]).exec(function (err, success) {\n            if (!err) {\n                res.status(200).json(success);\n            } else {\n                res.status(400).json({ error: 'SomeThing Going On Wrong' });\n            }\n        });\n    }\n\n};\n\n//# sourceURL=webpack:///./api/controllers/TodoController.js?");
 
 /***/ }),
 
-/***/ "./api/TodoController.js":
-/*!*******************************!*\
-  !*** ./api/TodoController.js ***!
-  \*******************************/
+/***/ "./api/models/Todo.js":
+/*!****************************!*\
+  !*** ./api/models/Todo.js ***!
+  \****************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step(\"next\", value); }, function (err) { step(\"throw\", err); }); } } return step(\"next\"); }); }; }\n\nvar Model = __webpack_require__(/*! ./Todo */ \"./api/Todo.js\");\n\nmodule.exports = {\n\n    create: function (req, res, next) {\n        if (req.body && req.body != null) {\n            Model.create(req.body, function (err, success) {\n                if (!err) {\n                    res.status(200).json(success);\n                } else {\n                    res.status(400).json({ error: 'SomeThing Going On Wrong' });\n                }\n            });\n        } else {\n            res.status(400).json({ error: 'All fields required' });\n        }\n    },\n\n    findOne: function (req, res, next) {\n        if (req.body && req.body.id) {\n            Model.findById({ _id: req.body.id }, function (err, success) {\n                if (!err) {\n                    res.status(200).json(success);\n                } else {\n                    res.status(400).json({ error: 'SomeThing Going On Wrong' });\n                }\n            });\n        } else {\n            res.status(400).json({ error: 'SomeThing Going On Wrong' });\n        }\n    },\n\n    update: function (req, res, next) {\n        if (req.body && req.body._id) {\n            Model.findOneAndUpdate({ _id: req.body._id }, req.body, { new: true }, function (err, success) {\n                if (!err) {\n                    res.status(200).json(success);\n                } else {\n                    res.status(400).json({ error: 'SomeThing Going On Wrong' });\n                }\n            });\n        } else {\n            res.status(400).json({ error: 'SomeThing Going On Wrong' });\n        }\n    },\n\n    remove: (() => {\n        var _ref = _asyncToGenerator(function* (req, res, next) {\n            try {\n                if (req.body && req.body.id) {\n                    yield Model.findByIdAndRemove({ _id: req.body.id });\n                    let success = yield Model.find({}).sort([['createdAt', -1]]);\n                    //\n                    res.status(200).json(success);\n                } else {\n                    return res.status(400).json({ error: 'SomeThing Going On Wrong' });\n                }\n            } catch (e) {\n                return res.status(400).json({ error: 'Server Error' });\n            }\n        });\n\n        return function remove(_x, _x2, _x3) {\n            return _ref.apply(this, arguments);\n        };\n    })(),\n\n    getall: function (req, res, next) {\n        Model.find({}).sort([['createdAt', -1]]).exec(function (err, success) {\n            if (!err) {\n                res.status(200).json(success);\n            } else {\n                res.status(400).json({ error: 'SomeThing Going On Wrong' });\n            }\n        });\n    }\n\n};\n\n//# sourceURL=webpack:///./api/TodoController.js?");
+eval("var mongoose = __webpack_require__(/*! mongoose */ \"mongoose\");\nvar Schema = mongoose.Schema;\n\nvar Todo = new Schema({\n\n    name: {\n        type: String,\n        trim: true\n    },\n    description: {\n        type: String,\n        trim: true\n    }\n\n}, { timestamps: true, versionKey: false });\n\nmodule.exports = mongoose.model('Todo', Todo);\n\n//# sourceURL=webpack:///./api/models/Todo.js?");
 
 /***/ }),
 
@@ -115,7 +115,7 @@ eval("function _asyncToGenerator(fn) { return function () { var gen = fn.apply(t
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var router = __webpack_require__(/*! express */ \"express\").Router();\nconst Controller = __webpack_require__(/*! ../api/TodoController */ \"./api/TodoController.js\");\n\n//\nrouter.post('/create', function (req, res, next) {\n    Controller.create(req, res, next);\n});\nrouter.post('/findOne', function (req, res, next) {\n    Controller.findOne(req, res, next);\n});\nrouter.post('/update', function (req, res, next) {\n    Controller.update(req, res, next);\n});\nrouter.post('/remove', function (req, res, next) {\n    Controller.remove(req, res, next);\n});\nrouter.get('/', function (req, res, next) {\n    Controller.getall(req, res, next);\n});\n\nmodule.exports = router;\n\n//# sourceURL=webpack:///./routes/router.js?");
+eval("var router = __webpack_require__(/*! express */ \"express\").Router();\nconst Controller = __webpack_require__(/*! ../api/controllers/TodoController */ \"./api/controllers/TodoController.js\");\nconst {\n    runValidation\n} = __webpack_require__(/*! ../validators */ \"./validators/index.js\");\nconst {\n    todoValidator\n} = __webpack_require__(/*! ../validators/todo */ \"./validators/todo.js\");\n//\nrouter.post('/create', todoValidator, runValidation, function (req, res, next) {\n    Controller.create(req, res, next);\n});\nrouter.post('/findOne', function (req, res, next) {\n    Controller.findOne(req, res, next);\n});\nrouter.post('/update', todoValidator, runValidation, function (req, res, next) {\n    Controller.update(req, res, next);\n});\nrouter.post('/remove', function (req, res, next) {\n    Controller.remove(req, res, next);\n});\nrouter.get('/', function (req, res, next) {\n    Controller.getall(req, res, next);\n});\n\nmodule.exports = router;\n\n//# sourceURL=webpack:///./routes/router.js?");
 
 /***/ }),
 
@@ -155,6 +155,28 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var expr
 
 /***/ }),
 
+/***/ "./validators/index.js":
+/*!*****************************!*\
+  !*** ./validators/index.js ***!
+  \*****************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("const { validationResult } = __webpack_require__(/*! express-validator */ \"express-validator\");\n\nexports.runValidation = (req, res, next) => {\n    const errors = validationResult(req);\n    if (!errors.isEmpty()) {\n        return res.status(422).json({ error: errors.array()[0].msg });\n    }\n    next();\n};\n\n//# sourceURL=webpack:///./validators/index.js?");
+
+/***/ }),
+
+/***/ "./validators/todo.js":
+/*!****************************!*\
+  !*** ./validators/todo.js ***!
+  \****************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("const { check } = __webpack_require__(/*! express-validator */ \"express-validator\");\n\nexports.todoValidator = [check('name').not().isEmpty().withMessage('Name is required')];\n\n//# sourceURL=webpack:///./validators/todo.js?");
+
+/***/ }),
+
 /***/ "body-parser":
 /*!******************************!*\
   !*** external "body-parser" ***!
@@ -185,6 +207,17 @@ eval("module.exports = require(\"express\");\n\n//# sourceURL=webpack:///externa
 /***/ (function(module, exports) {
 
 eval("module.exports = require(\"express-http-proxy\");\n\n//# sourceURL=webpack:///external_%22express-http-proxy%22?");
+
+/***/ }),
+
+/***/ "express-validator":
+/*!************************************!*\
+  !*** external "express-validator" ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = require(\"express-validator\");\n\n//# sourceURL=webpack:///external_%22express-validator%22?");
 
 /***/ }),
 

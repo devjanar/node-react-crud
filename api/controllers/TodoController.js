@@ -1,4 +1,4 @@
-var Model = require('./Todo');
+var Model = require('../models/Todo');
 
 module.exports =  {
 
