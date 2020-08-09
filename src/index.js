@@ -16,7 +16,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 // db
 mongoose
-    .connect("mongodb://localhost:27017/todo", { useNewUrlParser: true, useCreateIndex: true, useFindAndModify: false })
+    .connect("mongodb://localhost:27017/todo",
+        { useNewUrlParser: true,
+            useCreateIndex: true,
+            useFindAndModify: false,
+            useUnifiedTopology: true  
+        })
     .then(() => console.log('DB connected'))
     .catch(err => {
         console.log(err);
