@@ -14,24 +14,43 @@ Project should look like this:
 ```
 node-react-crud/
   api/ 
-    models/
     controllers/
+        TodoController.js
+    models/
+        Todo.js    
   build/
+    bundle.js
   public/
   routes/
+    router.js
   src/
-    helpers/   
-   public/
+    helpers/
+        envPort.js
+        index.js   
+    public/
      action/
+        todoAction.js
      components/
+        common/
+            InputForm.js
+        AddTodolist.js    
+        EditTodolist.js    
+        Todolist.js    
      reducers/
+        rootReducer.js
+        todoReducer.js
      store/
+        index.js
      utils/ 
+        quill.js
+        service.js
      App.css
      App.js
      index.js
    index.js
-  validators/ 
+  validators/
+    index.js 
+    todo.js 
   README.md
   package.json
   webpack.base.js

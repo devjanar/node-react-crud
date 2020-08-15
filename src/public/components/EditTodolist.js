@@ -5,6 +5,7 @@ import ReactQuill from 'react-quill';
 import { QuillModules_System, QuillFormats_System} from '../utils/quill';
 import {findOneItem,updateItem} from '../actions/todoAction'
 import { useHistory,useParams } from "react-router-dom";
+import InputForm from './common/InputForm'
 
 const EditTodolist = ({...props }) => {
     let history = useHistory();
@@ -70,12 +71,16 @@ const EditTodolist = ({...props }) => {
                             </Link>
                         </h1>
                         <div className="form-group">
-                            <label htmlFor="name">Name</label>
-                            <input type="text" className="form-control" id="name"
-                                   aria-describedby="textHelp" placeholder="Name"
-                                   name="name" value={state.name || ''} onChange={onChangeHandler}
+                            <InputForm
+                                label="Name"
+                                name="name"
+                                type="text"
+                                placeholder="Name"
+                                onChange={onChangeHandler}
+                                className="form-control"
+                                value={state.name}
+                                submitted={state.submitted}
                             />
-                            {state.submitted && !state.name && <div className="erro-block">Name is required</div>}
                         </div>
                         <div className="form-group">
                             <label htmlFor="description">Description</label>
